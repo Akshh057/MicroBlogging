@@ -6,6 +6,7 @@
 
 .App {
   text-align: center;
+  overflow-x: hidden;
 }
 
 .search___div{
@@ -20,6 +21,7 @@
   width: 80px;
   background: transparent;
   margin-left: 20px;
+  margin-top: 10px;
   border: 2px solid #FF7043;
   cursor: pointer;
   transition: 0.3s ease-in-out;

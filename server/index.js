@@ -7,6 +7,8 @@ const cors = require('cors');
 const route = require('./routes')
 dotenv.config();
 
+const PORT = process.env.PORT || 5000
+
 mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -19,6 +21,10 @@ app.use(cors({ credentials: true, origin: true }))
 
 app.use('/api', route)
 
-app.listen(5000, () => {
-    console.log(`Server listening on 5000`)
+app.listen(PORT, () => {
+    console.log(`Server is listening on ${PORT}`)
+})
+
+app.get("/", (req, res) => {
+    res.send("Hello from heroku")
 })
