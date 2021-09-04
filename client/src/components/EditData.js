@@ -47,18 +47,16 @@ const EditData = ({ location, history }) => {
                     </div>
                     <div className="editdata__content">
                         <form onSubmit={save}>
-                            <p> <input
+                            <input
                                 type="text"
                                 name="Title"
                                 placeholder="Title"
                                 value={data?.Title}
                                 onChange={handleChange}
                             />
-                            </p>
-                            <p>
-                                <textarea value={data?.Body} name="Body" onChange={handleChange}>
-                                </textarea>
-                            </p>
+                            <textarea value={data?.Body} name="Body" onChange={handleChange}>
+
+                            </textarea>
                             <input type="submit" />
                         </form>
                     </div>
