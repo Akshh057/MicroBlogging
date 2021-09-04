@@ -63,4 +63,14 @@ router.get('/search', async (req, res) => {
     }
 })
 
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const deletedblog = await Blog.findByIdAndDelete(req.params.id)
+        const newBlogs = await Blog.find();
+        if (deletedblog && newBlogs) res.status(200).json(newBlogs);
+        else return res.json({ message: "User not deleted" })
+    } catch (err) {
+        res.status(500).json(err)
+    }
+})
 module.exports = router

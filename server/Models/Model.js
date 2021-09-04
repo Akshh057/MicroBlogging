@@ -8,7 +8,7 @@ const BlogSchema = new mongoose.Schema({
     },
     Body: {
         type: String,
-        min: 100,
+        max: 10,
         required: true
     },
     Likes: {

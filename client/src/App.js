@@ -1,20 +1,18 @@
-import React, { useEffect } from 'react'
 import './App.css';
-import axios from 'axios';
-
+import Home from './components/Home';
+import Header from './components/Header';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import EditData from './components/EditData';
 function App() {
-  useEffect(() => {
-    const callApi = async () => {
-      const res = await axios.get('http://localhost:5000/api/getAllBlogs')
-      console.log(res.data)
 
-    }
-    callApi()
-  }, [])
   return (
-    <>
-
-    </>
+    <BrowserRouter>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/edit" component={EditData} />
+      </Switch>
+    </BrowserRouter>
 
   );
 }
