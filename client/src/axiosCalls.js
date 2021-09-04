@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = 'http://localhost:5000/api'
+const baseUrl = 'https://mircoblogger.herokuapp.com'
 // All the axios request are performed over here, it is an object with key value pair, keys being the name of the request and values 
 // being the function.
 const API = {
