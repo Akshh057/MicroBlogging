@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import Blogs from './Blogs';
 import './blogs.css'
-const Home = () => {
+const Home = ({ searchData }) => {
     const [data, setData] = useState([])
-    // const [search, setSearch] = useState('')
+
     useEffect(() => {
         const callApi = async () => {
             try {
@@ -15,8 +15,8 @@ const Home = () => {
                 console.log(err)
             }
         }
-        callApi()
-    }, [])
+        searchData.length === 0 ? callApi() : setData(searchData)
+    }, [searchData])
     const colors = [
         {
             backgroundColor: '#FBE9E7', //orange
@@ -43,16 +43,9 @@ const Home = () => {
             console.log(err)
         }
     }
-    // const searchDb = (e) => {
-    //     setSearch(e.target.value)
-    // }
+
     return (
         <div className="main__div">
-            {/* <input type="search" value={search} onChange={searchDb} />
-            <button onClick={async () => {
-                const res = await axios.get(`http://localhost:5000/api/search?s=${search}`)
-                console.log(res.data)
-            }}> search</button> */}
             {
                 data && data.map(({ Title, Body, _id }, idx) => {
                     const random_color = colors[Math.floor(

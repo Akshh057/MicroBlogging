@@ -30,4 +30,9 @@
     width: 57px;
     background: transparent;
     margin-left: 10px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+.blog__btn:hover{
+    transform: scale(1.1);
 }

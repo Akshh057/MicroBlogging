@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import './editdata.css'
+import React, { useState } from 'react'
+import './adddata.css'
 import axios from 'axios'
-const EditData = ({ location, history }) => {
+const AddData = ({ history }) => {
     const [data, setData] = useState({
-        Title: location?.data?.Title || "",
-        Body: location?.data?.Body || "",
-        _id: location?.data?.id || "",
-    })
-    useEffect(() => {
-        if (!location?.data)
-            history.push("/")
+        Title: "",
+        Body: "",
     })
     console.log(history)
     const handleChange = (e) => {
@@ -33,28 +28,32 @@ const EditData = ({ location, history }) => {
 
     }
     const save = async (e) => {
-        e.preventDefault();
-        const res = await axios.put(`http://localhost:5000/api/updateBlog/${data._id}`, data)
-        res.data && history.push('/')
+        try {
+            e.preventDefault();
+            const res = await axios.post("http://localhost:5000/api/addBlog", data)
+            res.data && history.push('/')
+        }
+        catch (err) {
+            console.log(err)
+        }
     }
-
     return (
-        <div className="editdata__main1">
-            <div className="editdata__main">
-                <div className="editdata__form">
-                    <div className="editdata__heading">
-                        <h3>Edit Blog</h3>
+        <div className="adddata__main1">
+            <div className="adddata__main">
+                <div className="adddata__form">
+                    <div className="adddata__heading">
+                        <h3>Add Blog</h3>
                     </div>
-                    <div className="editdata__content">
+                    <div className="adddata__content">
                         <form onSubmit={save}>
                             <input
                                 type="text"
                                 name="Title"
                                 placeholder="Title"
-                                value={data?.Title}
+                                value={data.Title}
                                 onChange={handleChange}
                             />
-                            <textarea value={data?.Body} name="Body" onChange={handleChange}>
+                            <textarea value={data.Body} name="Body" onChange={handleChange}>
 
                             </textarea>
                             <input type="submit" />
@@ -66,4 +65,4 @@ const EditData = ({ location, history }) => {
     )
 }
 
-export default EditData
+export default AddData

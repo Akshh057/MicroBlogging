@@ -55,7 +55,12 @@ router.get('/search', async (req, res) => {
     try {
         console.log(req.query.s)
         const result = await Blog.find({
-            $text: { $search: req.query.s }
+            $text: {
+                $search: req.query.s,
+                $language: "none",
+                // $caseSensitive: true
+            }
+
         })
         result && res.status(200).json(result)
     } catch (err) {
@@ -68,7 +73,7 @@ router.delete('/delete/:id', async (req, res) => {
         const deletedblog = await Blog.findByIdAndDelete(req.params.id)
         const newBlogs = await Blog.find();
         if (deletedblog && newBlogs) res.status(200).json(newBlogs);
-        else return res.json({ message: "User not deleted" })
+        else return res.json({ message: "Blog not deleted" })
     } catch (err) {
         res.status(500).json(err)
     }
