@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
 import './adddata.css'
-import axios from 'axios'
+import API from '../axiosCalls'
 const AddData = ({ history }) => {
     const [data, setData] = useState({
         Title: "",
         Body: "",
     })
-    console.log(history)
     const handleChange = (e) => {
-        if (data?.Body.length > 380 && e.target.name === "Body") {
-            alert("Blog body length should not be less than 380 characters.")
+        if (data.Body.length > 380 && e.target.name === "Body") {
+            alert("Blog body length should be less than 380 characters.")
+        }
+        else if (e.target.name === "Title") {
+            setData((prevState) => {
+                return {
+                    ...prevState,
+                    [e.target.name]: e.target.value
+                }
+            })
         }
         else {
             setData((prevState) => {
@@ -19,18 +26,12 @@ const AddData = ({ history }) => {
                 }
             })
         }
-        setData((prevState) => {
-            return {
-                ...prevState,
-                [e.target.name]: e.target.value
-            }
-        })
 
     }
     const save = async (e) => {
         try {
             e.preventDefault();
-            const res = await axios.post("http://localhost:5000/api/addBlog", data)
+            const res = await API.addBlog(data)
             res.data && history.push('/')
         }
         catch (err) {

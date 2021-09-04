@@ -6,14 +6,16 @@
     align-items: center;
 }
 .add__btn{
-    height: 3vh;
-    width: 80px;
+    height: 4vh;
+    width: 90px;
     background: transparent;
     margin-left: 60px;
-    border: 1px solid #FF7043;
+    border: 2px solid #FF7043;
     cursor: pointer;
     transition: 0.3s ease-in-out;
   }
   .add__btn:hover{
     transform: scale(1.1);
+    background-color: #FF7043;
+    color: white;
   }

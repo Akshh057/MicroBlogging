@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-
+import API from '../axiosCalls'
 const Search = ({ setSearchData }) => {
-    const [searchValue, setSearch] = useState('')
+    const [searchValue, setSearch] = useState('');
     const searchDb = (e) => {
         setSearch(e.target.value)
     }
@@ -13,7 +12,8 @@ const Search = ({ setSearchData }) => {
         <div className="search___div">
             <input type="search" value={searchValue} onChange={searchDb} />
             <button onClick={async () => {
-                const res = await axios.get(`http://localhost:5000/api/search?s=${searchValue}`)
+                //calling search API.
+                const res = await API.searchBlog(searchValue)
                 setSearchData(res.data)
             }} className="search__btn"> search</button>
         </div>

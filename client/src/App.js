@@ -8,19 +8,20 @@ import Search from './components/Search'
 import AddData from './components/AddData';
 function App() {
   const [searchData, setSearchData] = useState([]);
-  console.log(searchData, "app")
   return (
     <BrowserRouter>
       <Header />
-
       <Switch>
+        {/* Routes */}
         <Route exact path="/">
           <Search setSearchData={setSearchData} />
-          <Link to='/add'>
-            <button className="add__btn">
-              Add Blog
-            </button>
-          </Link>
+          <div className="btn__div">
+            <Link to='/add'>
+              <button className="add__btn">
+                Add Blog
+              </button>
+            </Link>
+          </div>
           <Home searchData={searchData} />
         </Route>
         <Route path="/edit" component={EditData} />

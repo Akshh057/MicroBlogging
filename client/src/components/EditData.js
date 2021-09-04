@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './editdata.css'
-import axios from 'axios'
+import API from '../axiosCalls'
 const EditData = ({ location, history }) => {
     const [data, setData] = useState({
         Title: location?.data?.Title || "",
@@ -34,7 +34,7 @@ const EditData = ({ location, history }) => {
     }
     const save = async (e) => {
         e.preventDefault();
-        const res = await axios.put(`http://localhost:5000/api/updateBlog/${data._id}`, data)
+        const res = await API.updateBlog(data._id, data)
         res.data && history.push('/')
     }
 
